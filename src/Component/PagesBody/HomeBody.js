@@ -1,7 +1,37 @@
 import React from 'react';
-import { FaRegArrowAltCircleUp, FaArrowRight} from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
+import { IonIcon } from '@ionic/react';
+import { caretBackOutline, caretForwardOutline } from 'ionicons/icons';
+import { Link } from 'react-router-dom';
+import { useState,useEffect, useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import RequestForm from '../../RequestForm';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 
 function HomeBody() {
+    const [isFormOpen, setIsFormOpen] = useState(false);
+    const swiperRef = useRef(null);
+
+    useEffect(() => {
+        if (swiperRef.current && swiperRef.current.swiper) {
+            const swiper = swiperRef.current.swiper;
+
+            // Custom navigation
+            document.querySelector('.prev').addEventListener('click', () => {
+                swiper.slidePrev();
+            });
+            document.querySelector('.next').addEventListener('click', () => {
+                swiper.slideNext();
+            });
+        }
+    }, []);
+
     return (
         <>
             <section className="hero-section"   >
@@ -14,9 +44,9 @@ function HomeBody() {
                     <p>At Alte Consulting, we offer a full spectrum of digital consulting services, from website and software development to mobile app creation, product discovery, intuitive design, and comprehensive business solutions.</p>
 
                     <div className="hero-links">
-                        <a id="button-1" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00GcrPNO72R7ML0RTskXRADvJdJmiBJh_CP03IxNCaTERG0W5huuLvIC1gD9nUZCYDWjJR9qCo?gv=true" target="_blank" rel="noreferrer">Book a Discovery call<i className="fa-solid fa-arrow-right"><FaArrowRight/></i></a>
+                        <a id="button-1" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00GcrPNO72R7ML0RTskXRADvJdJmiBJh_CP03IxNCaTERG0W5huuLvIC1gD9nUZCYDWjJR9qCo?gv=true" target="_blank" rel="noreferrer">Book a Discovery call<i className="fa-solid fa-arrow-right"><FaArrowRight /></i></a>
 
-                        <button id="button-2" onclick="toggleForm()">Request a Quote<i className="fa-solid fa-arrow-right"><FaArrowRight/></i></button>
+                        <button id="button-2" onClick={() => setIsFormOpen(true)}>Request a Quote<i className="fa-solid fa-arrow-right"><FaArrowRight /></i></button>
 
                     </div>
                 </div>
@@ -25,7 +55,9 @@ function HomeBody() {
             <div className="pussy">
                 <img className="hero-img" src="image/hero-img.png" alt="" />
             </div>
-
+            {isFormOpen && (
+                <RequestForm onClose={() => setIsFormOpen(false)} />
+            )}
 
 
             {/* <!-- hero section ends --> */}
@@ -78,7 +110,7 @@ function HomeBody() {
                         <p className="text1">Our team of specialists leverages deep industry knowledge to deliver solutions that not only solve problems but also propel your business forward.</p>
 
                         <div className="view">
-                            <a className="anchor" href="our-services.html"> <i className='bx bx-right-top-arrow-circle'><FaRegArrowAltCircleUp/></i> LEARN MORE</a>
+                            <Link className="anchor" to="/Our-Services"> <i className='bx bx-right-top-arrow-circle'></i> LEARN MORE</Link>
                         </div>
                     </div>
 
@@ -90,110 +122,46 @@ function HomeBody() {
             </section>
 
 
-            {/* <!-- 4th secetion--> */}
-
-            {/* <!-- <section className="explore-services  swiper">  
-
-<h2>Explore Our Services</h2>
-    <div className="line"></div>
-
-
-<div className="card-container swiper-wrapper" data-aos="fade-up" data-aos-delay="50">    
-    
-    <div className="card " >
-        <img src="image/eplore-our-services-img-1.png" alt="">
-        <div className="card-content">
-            <h3>Web/Software Development</h3>
-            <p>Transform your online presence with our custom
-                website and software solutions designed for 
-                seamless performance and scalability, ensuring 
-                your business stays ahead in the digital age
-                Read more</p>
-            <a className="btn" href="#">Read more</a>
-        </div>
-        
-    </div>
-
-    <div className="card">
-        <img src="image/eplore-our-services-img-2.png" alt="">
-        <div className="card-content">
-            <h3>Mobile App Development</h3>
-            <p> Capture the growing mobile market with our high-
-                performance app development services. We
-                 create intuitive, engaging mobile experiences
-                 that keep users coming back.
-                </p>
-            <a className="btn" href="#">Read more</a>
-        </div>
-
-    </div>
-
-    <div className="card">
-        <img src="image/eplore-our-services-img-3.png" alt="">
-        <div className="card-content">
-            <h3>Product Discovery</h3>
-            <p className="product-dis" >Our product discovery process aligns your vision
-                with market needs and technical feasibility,
-                providing a clear path from concept to launch.
-                </p>
-            <a className="btn" href="#">Read more</a>
-        </div>
-        
-    </div>
-
-    <div className="card">
-        <img src="image/eplore-our-services-img-3.png" alt="">
-        <div className="card-content">
-            <h3>Product Discovery</h3>
-            <p className="product-dis" >Our product discovery process aligns your vision
-                with market needs and technical feasibility,
-                providing a clear path from concept to launch.
-                </p>
-            <a className="btn" href="#">Read more</a>
-        </div>
-        
-    </div>
-
-    <div className="card">
-        <img src="image/eplore-our-services-img-3.png" alt="">
-        <div className="card-content">
-            <h3>Product Discovery</h3>
-            <p className="product-dis" >Our product discovery process aligns your vision
-                with market needs and technical feasibility,
-                providing a clear path from concept to launch.
-                </p>
-            <a className="btn" href="#">Read more</a>
-        </div>
-        
-    </div>
-
-    <div className="card">
-        <img src="image/eplore-our-services-img-3.png" alt="">
-        <div className="card-content">
-            <h3>Product Discovery</h3>
-            <p className="product-dis" >Our product discovery process aligns your vision
-                with market needs and technical feasibility,
-                providing a clear path from concept to launch.
-                </p>
-            <a className="btn" href="#">Read more</a>
-        </div>
-        
-    </div>
-
-</div>   
-<div className="swiper-pagination"></div>
-<div className="swiper-button-prev"></div>
-<div className="swiper-button-next"></div>
-</section> --> */}
+           
 
 
             <section className="ex-container">
                 <div className="swiper">
                     <h2 className="swiper-tex">Explore Our Services</h2>
                     <div className="line"></div>
-
-                    <div className="swiper-wrapper">
-                        <div className="swiper-slide swiper-no-swiping">
+                    <Swiper
+                        ref={swiperRef}
+                        modules={[Navigation, Pagination]}
+                        spaceBetween={20} // Reduced space between slides
+                        slidesPerView={4} // Changed to 4 slides per view
+                        navigation={false} // We'll use custom navigation
+                        pagination={{ clickable: true }}
+                        breakpoints={{
+                            // when window width is >= 320px
+                            320: {
+                                slidesPerView: 1,
+                                spaceBetween: 10
+                            },
+                            // when window width is >= 480px
+                            480: {
+                                slidesPerView: 2,
+                                spaceBetween: 15
+                            },
+                            // when window width is >= 768px
+                            768: {
+                                slidesPerView: 3,
+                                spaceBetween: 20
+                            },
+                            // when window width is >= 1024px
+                            1024: {
+                                slidesPerView: 4,
+                                spaceBetween: 20
+                            }
+                        }}
+                    >
+                        <SwiperSlide>
+                            {/* <div className="swiper-wrapper"> */}
+                            {/* <div className="swiper-slide swiper-no-swiping"> */}
                             <div className="content">
                                 <img src="image/eplore-our-services-img-1.png" alt="" />
                                 <h2>Web/Software Development</h2>
@@ -202,10 +170,12 @@ function HomeBody() {
                                     seamless performance and scalability, ensuring
                                     your business stays ahead in the digital age
                                 </p>
-                                <button className="btn">Read More <i className="fa-solid fa-arrow-right"><FaArrowRight/></i></button>
+                                <button className="btn">Read More <i className="fa-solid fa-arrow-right"><FaArrowRight /></i></button>
                             </div>
-                        </div>
-                        <div className="swiper-slide">
+                            {/* </div> */}
+                        </SwiperSlide>
+                        {/* <div className="swiper-slide"> */}
+                        <SwiperSlide>
                             <div className="content">
                                 <img src="image/eplore-our-services-img-2.png" alt="" />
                                 <h2>Mobile App Development</h2>
@@ -213,13 +183,13 @@ function HomeBody() {
                                     performance app development services. We
                                     create intuitive, engaging mobile experiences
                                     that keep users coming back.
-
-
                                 </p>
-                                <button className="btn">Read More <i className="fa-solid fa-arrow-right"><FaArrowRight/></i></button>
+
+                                <button className="btn">Read More <i className="fa-solid fa-arrow-right"><FaArrowRight /></i></button>
                             </div>
-                        </div>
-                        <div className="swiper-slide">
+                        </SwiperSlide>
+                        {/* <div className="swiper-slide"> */}
+                        <SwiperSlide>\
                             <div className="content">
                                 <img src="image/eplore-our-services-img-3.png" alt="" />
                                 <h2>Product Discovery</h2>
@@ -229,10 +199,12 @@ function HomeBody() {
 
 
                                 </p>
-                                <button className="btn">Read More <i className="fa-solid fa-arrow-right"><FaArrowRight/></i></button>
+                                <button className="btn">Read More <i className="fa-solid fa-arrow-right"><FaArrowRight /></i></button>
                             </div>
-                        </div>
-                        <div className="swiper-slide">
+                        </SwiperSlide>
+                        {/* </div> */}
+                        {/* <div className="swiper-slide"> */}
+                        <SwiperSlide>
                             <div className="content">
                                 <img src="image/eplore-our-services-img-4.png" alt="" />
                                 <h2>Product Design</h2>
@@ -241,19 +213,22 @@ function HomeBody() {
                                     delight your customers, ensuring a superior user
                                     experience
                                 </p>
-                                <button className="btn">Read More <i className="fa"><FaArrowRight/></i></button>
+                                <button className="btn">Read More <i className="fa"><FaArrowRight /></i></button>
                             </div>
-                        </div>
-                        <div className="swiper-slide">
+                        </SwiperSlide>
+                        {/* </div> */}
+                        <SwiperSlide>
                             <div className="content">
                                 <img src="image/eplore-our-services-img-5.png" alt="" />
                                 <h2>Research and Analysis</h2>
                                 <p >Gain a competitive edge in your business with our comprehensive research and analysis services. We provide actionable insights to optimize your strategies and stay ahead of market trends.
                                 </p>
-                                <button className="btn">Read More <i className="fa"><FaArrowRight/></i></button>
+                                <button className="btn">Read More <i className="fa"><FaArrowRight /></i></button>
                             </div>
-                        </div>
-                        <div className="swiper-slide">
+                        </SwiperSlide>
+                        {/* </div> */}
+                        {/* <div className="swiper-slide"> */}
+                        <SwiperSlide>
                             <div className="content">
                                 <img src="image/eplore-our-services-img-6.png" alt="" />
                                 <h2>Pitch Desk Creation</h2>
@@ -262,10 +237,12 @@ function HomeBody() {
                                     clearly communicate your vision and value
                                     proposition.
                                 </p>
-                                <button className="btn">Read More<i className="fa-solid fa-arrow-right"><FaArrowRight/></i> </button>
+                                <button className="btn">Read More<i className="fa-solid fa-arrow-right"><FaArrowRight /></i> </button>
                             </div>
-                        </div>
-                        <div className="swiper-slide">
+                        </SwiperSlide>
+                        {/* </div> */}
+                        {/* <div className="swiper-slide"> */}
+                        <SwiperSlide>
                             <div className="content">
                                 <img src="image/eplore-our-services-img-7.png" alt="" />
                                 <h2>Business Plan Development</h2>
@@ -274,10 +251,12 @@ function HomeBody() {
                                     roadmap to success, giving you a solid
                                     foundation for growth.
                                 </p>
-                                <button className="btn">Read More <i className="fa-solid fa-arrow-right"><FaArrowRight/></i></button>
+                                <button className="btn">Read More <i className="fa-solid fa-arrow-right"><FaArrowRight /></i></button>
                             </div>
-                        </div>
-                        <div className="swiper-slide">
+                        </SwiperSlide>
+                        {/* </div> */}
+                        <SwiperSlide>
+                            {/* <div className="swiper-slide"> */}
                             <div className="content">
                                 <img src="image/eplore-our-services-img-8.png" alt="" />
                                 <h2>Low-Code App Development</h2>
@@ -286,14 +265,15 @@ function HomeBody() {
                                     allowing you to quickly deploy efficient
                                     applications without sacrificing quality.
                                 </p>
-                                <button className="btn">Read More <i className="fa"><FaArrowRight/></i></button>
+                                <button className="btn">Read More <i className="fa"><FaArrowRight /></i></button>
                             </div>
-                        </div>
-
-                    </div>
+                        </SwiperSlide>
+                        {/* </div> */}
+                    </Swiper>
+                    {/* </div> */}
                     <ul className="control" id="custom-control">
-                        <li className="prev"><ion-icon className="arrow" name="caret-back-outline"></ion-icon></li>
-                        <li className="next"><ion-icon className="arrow" name="caret-forward-outline"></ion-icon></li>
+                        <li className="prev"><IonIcon icon={caretBackOutline} className="arrow" /></li>
+                        <li className="next"><IonIcon icon={caretForwardOutline} className="arrow" /></li>
                     </ul>
                 </div>
             </section>

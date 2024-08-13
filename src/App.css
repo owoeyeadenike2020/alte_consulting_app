@@ -1,5 +1,7 @@
 
-@import url('https://fonts.cdnfonts.com/css/pristina');            
+@import url('https://fonts.cdnfonts.com/css/pristina');  
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+
 
 *{
   margin: 0;
@@ -236,7 +238,9 @@ body{
   font-weight: 600;
   color: black;  
   background-color: #FEB902;
-  padding: 10px 8px;
+  padding: 10px 20px; /* Adjust the padding as needed */
+  font-size: 16px; 
+  /* padding: 10px 8px; */
   border-radius: 5px; 
   margin-left: 2rem;
   transition: 0.5s ease;
@@ -347,6 +351,7 @@ body{
     margin-left: 20px;
   }
 }
+
 
 
 /* --------- toggle ends------- */
@@ -893,9 +898,44 @@ body{
   justify-content: space-between; /* Adjust content alignment */
 }
 
+
 .ex-container .swiper .swiper-slide .content i{  
   margin-left: 0.3rem;
 }
+.swiper-slide {
+  width: calc(25% - 15px); /* 25% width for 4 slides, minus some space for gaps */
+  height: auto;
+}
+
+.swiper-slide .content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Adjust text sizes if needed */
+.swiper-slide h2 {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.swiper-slide p {
+  font-size: 0.9em;
+  flex-grow: 1;
+}
+
+.swiper-slide .btn {
+  margin-top: auto;
+}
+
 
 .ex-container .swiper .swiper-slide .content{ 
   position: relative;
@@ -955,6 +995,7 @@ body{
 .ex-container .swiper .swiper-slide .content .btn:hover{ 
   transform: scale(0.97);
 }
+
 
 /* CONTROL */
 .control{
@@ -1548,7 +1589,6 @@ footer .f-container .f-content i{
 
 
 
-
 /* contact us section begins */
 
 #contact-hero {
@@ -1683,7 +1723,18 @@ footer .f-container .f-content i{
 
 
 /* overlaying section */
- 
+.quote-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 .quote{   
   width: 85%; 
   height: 100%;
@@ -1692,8 +1743,8 @@ footer .f-container .f-content i{
   position: fixed;  
   z-index: 100;   
   margin-left: 8%;
-  overflow-y: auto; /* Enable vertical scrolling for overflow content */
-  display: none;
+  overflow-y: auto; 
+  animation: popOut 0.3s ease-out;/* Enable vertical scrolling for overflow content */
 }
 
 .quote form h2{ 
@@ -1834,7 +1885,16 @@ footer .f-container .f-content i{
   border-color: #FFF;
   animation: checkAnim .2s ease;
 }
-
+@keyframes popOut {
+  from {
+      transform: scale(0.8);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
 @keyframes checkAnim {
   from {
     transform: rotate(45deg) scale(0);

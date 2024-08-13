@@ -1,6 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { FaArrowRight } from "react-icons/fa";
+import RequestForm from '../../RequestForm';
+import { useState } from 'react';
 
 function ServiceBody() {
+    const [isFormOpen, setIsFormOpen] = useState(false);
+
     return (
         <>
             {/* <!-- hero section begins --> */}
@@ -19,9 +24,10 @@ function ServiceBody() {
                     </p>
 
                     <div className="hero-links">
-                        <a id="button-1" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00GcrPNO72R7ML0RTskXRADvJdJmiBJh_CP03IxNCaTERG0W5huuLvIC1gD9nUZCYDWjJR9qCo?gv=true" target="_blank" rel="noreferrer">Book a Discovery call<i className="fa-solid fa-arrow-right"></i></a>
+                        <a id="button-1" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00GcrPNO72R7ML0RTskXRADvJdJmiBJh_CP03IxNCaTERG0W5huuLvIC1gD9nUZCYDWjJR9qCo?gv=true" target="_blank" rel="noreferrer">Book a Discovery call<i className="fa-solid fa-arrow-right"><FaArrowRight/></i></a>
 
-                        <button id="button-2" onclick="toggleForm()">Request a Quote<i className="fa-solid fa-arrow-right"></i></button>
+                        <button id="button-2" onClick={() => setIsFormOpen(true)}>Request a Quote<i className="fa-solid fa-arrow-right"><FaArrowRight /></i></button>
+
                     </div>
                 </div>
             </section>
@@ -30,7 +36,9 @@ function ServiceBody() {
                 <img className="hero-img" src="image/cont-us-hero-img.png" alt="" data-aos="fade-up" data-aos-delay="50" />
             </div>
 
-
+            {isFormOpen && (
+                <RequestForm onClose={() => setIsFormOpen(false)} />
+            )}
             {/* <!-- hero section ends --> */}
 
 

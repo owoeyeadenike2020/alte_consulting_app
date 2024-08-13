@@ -1,6 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { FaArrowRight } from "react-icons/fa";
+import RequestForm from '../../RequestForm';
+import { useState } from 'react';
+
 
 function ContactBOdy() {
+    const [isFormOpen, setIsFormOpen] = useState(false);
+
     return (
         <>
             {/* <!-- hero section begins --> */}
@@ -15,9 +21,10 @@ function ContactBOdy() {
                     <p>Whether you are forging ahead with concrete projects or exploring new possibilities, we are eager to hear from you. Share your ideas and let us shape your digital future together.</p>
 
                     <div class="hero-links">
-                        <a id="button-1" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00GcrPNO72R7ML0RTskXRADvJdJmiBJh_CP03IxNCaTERG0W5huuLvIC1gD9nUZCYDWjJR9qCo?gv=true" target="_blank" rel="noreferrer">Book a Discovery call<i class="fa-solid fa-arrow-right"></i></a>
+                        <a id="button-1" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00GcrPNO72R7ML0RTskXRADvJdJmiBJh_CP03IxNCaTERG0W5huuLvIC1gD9nUZCYDWjJR9qCo?gv=true" target="_blank" rel="noreferrer">Book a Discovery call<i class="fa-solid fa-arrow-right"><FaArrowRight/></i></a>
 
-                        <button id="button-2" onclick="toggleForm()">Request a Quote<i class="fa-solid fa-arrow-right"></i></button>
+                        <button id="button-2" onClick={() => setIsFormOpen(true)}>Request a Quote<i className="fa-solid fa-arrow-right"><FaArrowRight /></i></button>
+
 
                     </div>
                 </div>
@@ -27,7 +34,9 @@ function ContactBOdy() {
                 <img class="hero-img" src="image/contact-us-hero-img.png" alt="" />
             </div>
 
-
+            {isFormOpen && (
+                <RequestForm onClose={() => setIsFormOpen(false)} />
+            )}
 
             {/* <!-- hero section ends --> */}
 

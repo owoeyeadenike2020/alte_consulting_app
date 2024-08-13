@@ -7,8 +7,18 @@ import Header from './Component/header';
 import Home from './Component/Home';
 import Service from './Component/Service';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { defineCustomElements } from 'ionicons/dist/loader';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
+defineCustomElements(window);
 
 function App() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <>
     <Router>

@@ -1,7 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { FaArrowRight,FaRegEnvelopeOpen, FaPhoneAlt, FaDesktop, FaStar } from "react-icons/fa";
+import { FaPeopleGroup } from "react-icons/fa6";
+import RequestForm from '../../RequestForm';
 
+import { useState } from 'react';
 function AboutBody() {
+    const [isFormOpen, setIsFormOpen] = useState(false);
+
     return (
+
         <>
             <section className="hero-section"   >
 
@@ -14,9 +21,10 @@ function AboutBody() {
                     </p>
 
                     <div className="hero-links">
-                        <a id="button-1" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00GcrPNO72R7ML0RTskXRADvJdJmiBJh_CP03IxNCaTERG0W5huuLvIC1gD9nUZCYDWjJR9qCo?gv=true" target="_blank" rel="noreferrer">Book a Discovery call<i className="fa-solid fa-arrow-right"></i></a>
+                        <a id="button-1" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00GcrPNO72R7ML0RTskXRADvJdJmiBJh_CP03IxNCaTERG0W5huuLvIC1gD9nUZCYDWjJR9qCo?gv=true" target="_blank" rel="noreferrer">Book a Discovery call<i className="fa-solid fa-arrow-right"><FaArrowRight/></i></a>
 
-                        <button id="button-2" onclick="toggleForm()">Request a Quote<i className="fa-solid fa-arrow-right"></i></button>
+                        <button id="button-2" onClick={() => setIsFormOpen(true)}>Request a Quote<i className="fa-solid fa-arrow-right"><FaArrowRight /></i></button>
+
 
                     </div>
                 </div>
@@ -25,6 +33,11 @@ function AboutBody() {
             <div className="pussy">
                 <img className="hero-img" src="image/about-us-hero.png" alt="" />
             </div>
+
+            {/* open the reqest quote form */}
+            {isFormOpen && (
+                <RequestForm onClose={() => setIsFormOpen(false)} />
+            )}
 
 
 
@@ -109,27 +122,27 @@ function AboutBody() {
                 <ul className="container-abt" data-aos="fade-up" data-aos-delay="50">
 
                     <div>
-                        <li><i className='bx bxs-envelope'></i>Initial Contact:</li>
+                        <li><i className='fa'><FaRegEnvelopeOpen/></i>Initial Contact:</li>
                         <p>Send us an email outlining your project goals and requirements.</p>
                     </div>
 
                     <div>
-                        <li><i className='bx bxs-phone-call'></i>Discovery Call:</li>
+                        <li><i className='fa'><FaPhoneAlt/></i>Discovery Call:</li>
                         <p>We schedule a personalized discovery call to delve deeper into your needs and aspirations.</p>
                     </div>
 
                     <div>
-                        <li><i className="fa-solid fa-desktop"></i>Proposal and Agreement:</li>
+                        <li><i className="fa-solid fa-desktop"><FaDesktop/></i>Proposal and Agreement:</li>
                         <p>Receive a comprehensive proposal and basic contract,detailing the scope of work and payment terms</p>
                     </div>
 
                     <div>
-                        <li><i className="fa-solid fa-people-group"></i>Collaborative Development:</li>
+                        <li><i className="fa-solid fa-people-group"><FaPeopleGroup/></i>Collaborative Development:</li>
                         <p>Stay involved as we develop your project, with regular updates and opportunities for your feedback.</p>
                     </div>
 
                     <div>
-                        <li><i className="fa-solid fa-star"></i>Final Delivery:</li>
+                        <li><i className="fa-solid fa-star"><FaStar/></i>Final Delivery:</li>
                         <p>Receive the final deliverables, meticulously crafted to exceed your expectations.</p>
                     </div>
 
